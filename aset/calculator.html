@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kebutuhan Dasar - The Uplift Foundation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .calculator-container {
+            background-color: white;
+            max-width: 500px;
+            width: 100%;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .cta-button {
+            width: 100%;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.95rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+
+        #result {
+            margin-top: 1.5rem;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #e74c3c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>Kalkulator Kebutuhan Dasar</h2>
+        <form id="needs-calculator">
+            <div class="form-group">
+                <label for="food">Biaya Makanan per Bulan (Rp)</label>
+                <input type="number" id="food" name="food" required>
+            </div>
+            <div class="form-group">
+                <label for="housing">Biaya Tempat Tinggal per Bulan (Rp)</label>
+                <input type="number" id="housing" name="housing" required>
+            </div>
+            <div class="form-group">
+                <label for="education">Biaya Pendidikan per Bulan (Rp)</label>
+                <input type="number" id="education" name="education" required>
+            </div>
+            <div class="form-group">
+                <label for="health">Biaya Kesehatan per Bulan (Rp)</label>
+                <input type="number" id="health" name="health" required>
+            </div>
+            <button type="submit" class="cta-button">Hitung Total</button>
+        </form>
+        <div id="result"></div>
+        <a href="index.html" class="back-link">Kembali ke Beranda</a>
+    </div>
+
+    <script>
+        document.getElementById('needs-calculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const food = parseInt(document.getElementById('food').value);
+            const housing = parseInt(document.getElementById('housing').value);
+            const education = parseInt(document.getElementById('education').value);
+            const health = parseInt(document.getElementById('health').value);
+            
+            const total = food + housing + education + health;
+            
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = `Total Kebutuhan Dasar per Bulan: <br>Rp ${total.toLocaleString('id-ID')}`;
+        });
+    </script>
+</body>
+</html>

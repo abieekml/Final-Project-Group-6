@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi Terintegrasi - The Uplift Foundation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .donation-hero {
+            background-color: #e74c3c;
+            color: white;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+        .donation-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .donation-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            background-color: #f9f9f9;
+            padding: 3rem;
+            border-radius: 10px;
+        }
+        .donation-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .donation-organizations {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .donation-button {
+            width: 100%;
+            padding: 1rem;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .donation-button:hover {
+            background-color: #c0392b;
+        }
+        .org-list {
+            list-style-type: none;
+        }
+        .org-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        .org-item img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 1rem;
+        }
+        .org-details {
+            flex-grow: 1;
+        }
+        .org-select {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="donation-hero">
+        <h1>Setiap Donasi Membuat Perubahan</h1>
+        <p>Bergabunglah dalam misi kami untuk memutus rantai kemiskinan. Satu kontribusi kecil dapat mengubah hidup seseorang.</p>
+    </div>
+
+    <div class="container">
+        <div class="donation-grid">
+            <div class="donation-form">
+                <h2>Form Donasi Anda</h2>
+                <form id="donationForm">
+                    <div class="form-group">
+                        <label for="donationAmount">Jumlah Donasi (Rp)</label>
+                        <input type="number" id="donationAmount" name="donationAmount" required min="10000" step="10000" placeholder="Minimum Rp 10.000">
+                    </div>
+                    <div class="form-group">
+                        <label for="organizationSelect">Pilih Organisasi</label>
+                        <select id="organizationSelect" name="organizationSelect" required>
+                            <option value="">Pilih Organisasi untuk Didukung</option>
+                            <option value="yayasan-pendidikan">Yayasan Pendidikan Anak</option>
+                            <option value="aksi-pangan">Aksi Pangan Kemanusiaan</option>
+                            <option value="kesehatan-desa">Layanan Kesehatan Pedesaan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="donorName">Nama Anda</label>
+                        <input type="text" id="donorName" name="donorName" required placeholder="Nama lengkap Anda">
+                    </div>
+                    <div class="form-group">
+                        <label for="donorEmail">Email</label>
+                        <input type="email" id="donorEmail" name="donorEmail" required placeholder="Email Anda">
+                    </div>
+                    <button type="submit" class="donation-button">Lanjutkan Donasi</button>
+                </form>
+            </div>
+            <div class="donation-organizations">
+                <h2>Organisasi Mitra</h2>
+                <ul class="org-list">
+                    <li class="org-item">
+                        <img src="/api/placeholder/60/60" alt="Yayasan Pendidikan Anak">
+                        <div class="org-details">
+                            <h3>Yayasan Pendidikan Anak</h3>
+                            <p>Membantu anak-anak mendapatkan pendidikan berkualitas</p>
+                        </div>
+                        <button class="org-select">Pilih</button>
+                    </li>
+                    <li class="org-item">
+                        <img src="/api/placeholder/60/60" alt="Aksi Pangan Kemanusiaan">
+                        <div class="org-details">
+                            <h3>Aksi Pangan Kemanusiaan</h3>
+                            <p>Menyediakan bantuan pangan untuk keluarga miskin</p>
+                        </div>
+                        <button class="org-select">Pilih</button>
+                    </li>
+                    <li class="org-item">
+                        <img src="/api/placeholder/60/60" alt="Layanan Kesehatan Pedesaan">
+                        <div class="org-details">
+                            <h3>Layanan Kesehatan Pedesaan</h3>
+                            <p>Memberikan akses kesehatan di daerah terpencil</p>
+                        </div>
+                        <button class="org-select">Pilih</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('donationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const donationAmount = document.getElementById('donationAmount').value;
+            const organization = document.getElementById('organizationSelect').value;
+            const donorName = document.getElementById('donorName').value;
+            const donorEmail = document.getElementById('donorEmail').value;
+
+            // Simulasi proses donasi (akan digantikan dengan integrasi API pembayaran nyata)
+            alert(`Terima kasih ${donorName}! 
+Donasi Anda sebesar Rp ${donationAmount.toLocaleString('id-ID')} 
+untuk ${document.getElementById('organizationSelect').selectedOptions[0].text} 
+sedang diproses.`);
+        });
+
+        // Tambahkan interaktivitas untuk tombol pilih organisasi
+        document.querySelectorAll('.org-select').forEach(button => {
+            button.addEventListener('click', function() {
+                const organizationName = this.closest('.org-item').querySelector('h3').textContent;
+                document.getElementById('organizationSelect').value = organizationName.replace(/\s+/g, '-').toLowerCase();
+            });
+        });
+    </script>
+</body>
+</html>
