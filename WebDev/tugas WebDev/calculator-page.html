@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Kebutuhan Dasar & Zakat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .calculator-container {
+            background-color: white;
+            max-width: 600px;
+            width: 100%;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #e74c3c;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .cta-button {
+            width: 100%;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.95rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #c0392b;
+        }
+
+        /* Popup style */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            border-radius: 8px;
+            z-index: 1000;
+            width: 520px; /* Increased width by 120px */
+            text-align: center;
+        }
+
+        .popup p {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .popup .highlight {
+            color: #e74c3c;
+            font-size: 1.2rem;
+        }
+
+        .popup button {
+            width: 100%;
+            background-color: #e74c3c; /* Matching "Hitung Donasi" button color */
+            color: white;
+            padding: 0.95rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #c0392b; /* Matching hover color */
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #e74c3c;
+            text-decoration: none;
+        }
+
+        /* Adding spacing between the buttons */
+        .back-link {
+            margin-bottom: 1rem; /* Space between "Back to Home" and "Donate" button */
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <h2>Kalkulator Donasi</h2>
+        <form id="needs-calculator">
+            <div class="form-group">
+                <label for="salary">Gaji Bulanan Anda (Rp)</label>
+                <input type="number" id="salary" name="salary" required>
+            </div>
+            <div class="form-group">
+                <label for="electricity">Daya Listrik (kWh)</label>
+                <input type="number" id="electricity" name="electricity" required>
+            </div>
+            <div class="form-group">
+                <label for="vehicles">Jumlah Kendaraan</label>
+                <input type="number" id="vehicles" name="vehicles" required>
+            </div>
+            <!-- Back to Home button moved here -->
+            <a href="home-page.html" class="back-link">Kembali ke Beranda</a>
+            <button type="submit" class="cta-button">Hitung Donasi</button>
+        </form>
+    </div>
+
+    <!-- Popup window -->
+    <div id="popup" class="popup">
+        <p id="popup-result"></p>
+        <button id="done-button">Done</button>
+    </div>
+
+    <script>
+        // Function to format numbers as Rupiah
+        function formatRupiah(amount) {
+            return amount.toLocaleString('id-ID');
+        }
+
+        document.getElementById('needs-calculator').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const salary = parseInt(document.getElementById('salary').value);
+            const electricity = parseInt(document.getElementById('electricity').value);
+            const vehicles = parseInt(document.getElementById('vehicles').value);
+            
+            let donationPercentage = 0.01; // Default 1%
+
+            if (electricity > 1000 || vehicles > 3) {
+                donationPercentage = 0.03; // Up to 3% if electricity is high or vehicles are many
+            } else if (electricity > 500 || vehicles > 1) {
+                donationPercentage = 0.02; // 2% for moderate usage
+            }
+
+            const donation = salary * donationPercentage;
+
+            // Klasifikasi tingkat pendapatan
+            let incomeLevel;
+            if (salary < 4000000) {
+                incomeLevel = "Menengah Bawah";
+            } else if (salary >= 4000000 && salary < 6000000) {
+                incomeLevel = "Menengah";
+            } else {
+                incomeLevel = "Menengah Atas";
+            }
+
+            // Prepare the result
+            const resultText = `
+                <p>Gaji Anda: <span class="highlight">Rp ${formatRupiah(salary)}</span> (${incomeLevel})</p>
+                <p>Rekomendasi Donasi (${donationPercentage * 100}%): <span class="highlight">Rp ${formatRupiah(donation)}</span></p>
+                <p>Anda termasuk dalam kategori: ${incomeLevel}</p>
+                <p>Golongan Donasi: Rp ${formatRupiah(donation)}</p>
+            `;
+            
+            // Show the popup
+            const popup = document.getElementById('popup');
+            const popupResult = document.getElementById('popup-result');
+            popupResult.innerHTML = resultText;
+            popup.style.display = 'block';
+            
+            // Hide the popup when "Done" is clicked
+            document.getElementById('done-button').addEventListener('click', function() {
+                popup.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

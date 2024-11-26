@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* ======== GLOBAL RESET & BASE STYLES START ======== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* ======== GLOBAL RESET & BASE STYLES END ======== */
+
+/* ======== CONTAINER STYLES START ======== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+/* ======== CONTAINER STYLES END ======== */
+
+/* ======== NAVBAR STYLES START ======== */
+.navbar {
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.navbar-default {
+    background-color: #e74c3c;
+}
+
+.navbar-scrolled {
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-scrolled .logo {
+    color: #e74c3c;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.3rem;
+    font-size: 1.15rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+}
+
+.navbar-default .nav-links a:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #e74c3c;
+}
+
+.navbar-scrolled .nav-links a {
+    color: #333;
+}
+
+.navbar-scrolled .nav-links a:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+/* ======== NAVBAR STYLES END ======== */
+
+/* ======== HERO SECTION STYLES START ======== */
+.hero {
+    height: 85vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.650);
+    z-index: -1;
+}
+
+.hero-content {
+    max-width: 800px;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+/* ======== HERO SECTION STYLES END ======== */
+
+/* ======== NEWS SECTION STYLES START ======== */
+.news-section {
+    padding: 40px 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #1a365d;
+}
+
+.main-article {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.main-article img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.article-content h3 {
+    font-size: 1.75rem;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.article-content p {
+    margin-bottom: 1rem;
+    color: #4a5568;
+}
+/* ======== NEWS SECTION STYLES END ======== */
+
+/* ======== SOLUTIONS GRID STYLES START ======== */
+.solutions-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.solution-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.solution-card:hover {
+    transform: translateY(-5px);
+}
+
+.solution-card h4 {
+    font-size: 1.25rem;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.solution-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+}
+
+.solution-card p {
+    color: #4a5568;
+    font-size: 0.95rem;
+}
+/* ======== SOLUTIONS GRID STYLES END ======== */
+
+/* ======== STATS SECTION STYLES START ======== */
+.stats {
+    padding: 4rem 1rem;
+    background-color: #f9f9f9;
+}
+
+.stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+/* ======== STATS SECTION STYLES END ======== */
+
+/* ======== CALCULATOR SECTION STYLES START ======== */
+.calculator {
+    padding: 4rem 1rem;
+}
+
+.calculator-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.calculator-container h2 {
+    margin-bottom: 2rem;
+    color: #2d3748;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 2px rgba(231, 76, 60, 0.1);
+}
+/* ======== CALCULATOR SECTION STYLES END ======== */
+
+/* ======== ACTIONS SECTION STYLES START ======== */
+.actions {
+    padding: 4rem 1rem;
+    background-color: #f9f9f9;
+}
+
+.actions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.action-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.action-card h3 {
+    color: #e74c3c;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.action-card p {
+    margin-bottom: 1.5rem;
+    color: #4a5568;
+}
+/* ======== ACTIONS SECTION STYLES END ======== */
+
+/* ======== CALL TO ACTION STYLES START ======== */
+.call-to-action {
+    background: #e74c3c;
+    color: white;
+    padding: 3rem 2rem;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 2rem;
+}
+
+.call-to-action h3 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.call-to-action p {
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+/* ======== CALL TO ACTION STYLES END ======== */
+
+/* ======== STANDARDIZED BUTTON STYLES START ======== */
+.cta-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.95rem 2rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+.cta-button .button-text {
+    margin-right: -0.25rem;
+    position: relative;
+    top: -2px;
+}
+
+.arrow-icon {
+    position: relative;
+    top: 2px;
+    transition: transform 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: white;
+    color: #e74c3c;
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
+    transform: translateY(-2px);
+}
+
+.cta-button:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* Call to action section button override */
+.call-to-action .cta-button {
+    background-color: white;
+    color: #e74c3c;
+    border: 2px solid transparent;
+}
+
+.call-to-action .cta-button:hover {
+    background-color: #e74c3c;
+    color: white;
+    border: 2px solid white;
+}
+
+/* Calculator submit button */
+.calculator-container .cta-button {
+    width: 100%;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.calculator-container .cta-button:hover {
+    background-color: white;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+}
+
+/* Action card buttons */
+.action-card .cta-button {
+    background-color: #e74c3c;
+    color: white;
+    width: 100%;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.action-card .cta-button:hover {
+    background-color: white;
+    color: #e74c3c;
+    border: 2px solid #e74c3c;
+    box-shadow: 0 4px 8px rgba(231, 76, 60, 0.2);
+}
+/* ======== STANDARDIZED BUTTON STYLES END ======== */
+
+/* ======== FOOTER STYLES START ======== */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+}
+/* ======== FOOTER STYLES END ======== */
+
+/* ======== ANIMATION STYLES START ======== */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.main-article,
+.solution-card {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.solution-card:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.solution-card:nth-child(3) {
+    animation-delay: 0.4s;
+}
+/* ======== ANIMATION STYLES END ======== */
+
+/* ======== RESPONSIVE STYLES START ======== */
+@media (min-width: 768px) {
+    .main-article {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .solutions-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .main-article h3 {
+        font-size: 1.5rem;
+    }
+
+    .call-to-action h3 {
+        font-size: 1.75rem;
+    }
+
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+/* ======== RESPONSIVE STYLES END ======== */
+</style>
+<body>
+    <section class="news-section">
+        <div class="container">
+            <h2 class="section-title">Krisis Kemiskinan Global: Tantangan dan Solusi</h2>
+            
+            <article class="main-article">
+                <div class="article-image">
+                    <img src="Republik-Demokratik-Kongo-merupakan-salah-satu-negara-termiskin-di-dunia-3117772322 (1).jpg" alt="Global Poverty Crisis">
+                </div>
+                <div class="article-content">
+                    <h3>Kemiskinan Global: Tantangan Besar yang Lebih dari Sekadar Angka.</h3>
+                    <p>
+                        Saat ini, hampir 700 juta orang di seluruh dunia hidup dalam kemiskinan ekstrem, dengan penghasilan kurang dari $2.15 per hari. Situasi ini mencerminkan kondisi memprihatinkan, di mana banyak keluarga terjebak dalam siklus kemiskinan yang sulit diputus. Pandemi COVID-19 telah memperburuk krisis ini, mendorong tambahan 100 juta orang ke dalam kemiskinan ekstrem dan memperluas jurang ketidaksetaraan.
+                    </p>
+                    <p>
+                        Krisis ini bukan sekadar soal uang, tetapi juga terbatasnya akses ke pendidikan, kesehatan, air bersih, sanitasi, dan gizi. Kemiskinan ekstrem memperburuk kerentanan terhadap perubahan iklim, konflik, dan bencana, dengan kelompok rentan seperti anak-anak dan perempuan paling terdampak. Upaya global terpadu sangat dibutuhkan untuk mengatasinya.
+                    </p>
+                </div>
+            </article>
+
+            <div class="solutions-grid">
+                <div class="solution-card">
+                    <h4>Pendidikan sebagai Kunci</h4>
+                    <img src="1293921.png" alt="Education Solution">
+                    <p>
+                        Meningkatkan akses ke pendidikan berkualitas dapat memutus siklus kemiskinan. Investasi dalam pendidikan menghasilkan peningkatan pendapatan hingga 10% untuk setiap tahun tambahan sekolah.
+                    </p>
+                </div>
+
+                <div class="solution-card">
+                    <h4>Pemberdayaan Ekonomi</h4>
+                    <img src="1293921.png" alt="Economic Empowerment">
+                    <p>
+                        Program keuangan mikro dan pelatihan keterampilan membantu masyarakat membangun mata pencaharian berkelanjutan. Lebih dari 200 juta orang telah memanfaatkan layanan keuangan mikro untuk keluar dari kemiskinan.
+                    </p>
+                </div>
+
+                <div class="solution-card">
+                    <h4>Teknologi untuk Perubahan</h4>
+                    <img src="1293921.png" alt="Technology Solution">
+                    <p>
+                        Inovasi teknologi memungkinkan akses lebih baik ke layanan finansial, pendidikan online, dan informasi pasar. Mobile banking telah membantu jutaan orang mengelola keuangan mereka dengan lebih baik.
+                    </p>
+                </div>
+            </div>
+
+            <div class="call-to-action">
+                <h3>Ambil Bagian dalam Perubahan</h3>
+                <p>
+                    Setiap tindakan, sekecil apapun, dapat membuat perbedaan dalam upaya mengentaskan kemiskinan global. Mari bergabung dalam gerakan ini!
+                </p>
+                <a href="#" class="cta-button">Mulai Berkontribusi</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
